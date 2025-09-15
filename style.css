@@ -1,0 +1,81 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#app{height:100%; overflow-x: hidden;}
+body{
+  background:#0a0a0a;
+  color:#f0f0f0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:18px;
+  line-height:1.5;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #333; }
+h1 { font-size: 2.2rem; margin-bottom: 5px; color: #fff; font-weight: 700; }
+.subtitle { color: #aaa; font-size: 1rem; }
+
+.card { background: #1a1a1a; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); border: 1px solid #2a2a2a; }
+.card-title { font-size: 1.4rem; margin-bottom: 16px; color: #fff; font-weight: 600; }
+
+.camera-section { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 768px) { .camera-section { grid-template-columns: 1fr; } }
+
+.camera-container { position: relative; width: 100%; background: #000; border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; }
+#video { width: 100%; height: 100%; object-fit: cover; display: block; transform: scaleX(1); }
+#overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:8rem;
+  color: #fff;
+  text-shadow: 0 6px 24px rgba(0,0,0,0.6);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  z-index: 30;
+}
+
+.countdown-overlay.active { opacity: 1; background: rgba(0,0,0,0.25); }
+
+.stats-panel { display: flex; flex-direction: column; justify-content: space-between; }
+.count-display { text-align: center; margin-bottom: 24px; }
+.count-value { font-size: 4rem; font-weight: 800; color: #fff; line-height: 1; margin: 10px 0; }
+.count-label { font-size: 1.1rem; color: #aaa; }
+.status-indicators { display: flex; justify-content: space-between; margin-bottom: 24px; }
+.indicator { text-align: center; padding: 12px; background: #252525; border-radius: 8px; flex: 1; margin: 0 5px; }
+.indicator-value { font-size: 1.5rem; font-weight: 700; color: #fff; }
+.indicator-label { font-size: 0.85rem; color: #888; margin-top: 5px; }
+
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn { padding: 14px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-size: 1rem; }
+.btn-primary { background: #4a4a4a; color: white; }
+.btn-primary:hover { background: #5a5a5a; }
+.btn-secondary { background: #2a2a2a; color: #ddd; border: 1px solid #3a3a3a; }
+.btn-secondary:hover { background: #333; }
+.btn-active { background: #369; color: white; }
+
+.feedback { margin-top: 24px; padding: 16px; background: #252525; border-radius: 8px; border-left: 4px solid #369; }
+.feedback-title { font-weight: 600; margin-bottom: 8px; color: #fff; }
+.feedback-text { color: #bbb; font-size: 0.95rem; }
+
+.skeleton-viz { display: flex; justify-content: center; margin-top: 20px; }
+.skeleton { position: relative; width: 120px; height: 200px; }
+.skeleton-part { position: absolute; background: #369; border-radius: 2px; }
+.skeleton-head { width: 40px; height: 40px; border-radius: 50%; top: 0; left: 40px; }
+.skeleton-body { width: 10px; height: 70px; top: 40px; left: 55px; }
+.skeleton-arm-left { width: 50px; height: 8px; top: 50px; left: 5px; transform: rotate(20deg); }
+.skeleton-arm-right { width: 50px; height: 8px; top: 50px; left: 65px; transform: rotate(-20deg); }
+.skeleton-leg-left { width: 8px; height: 60px; top: 110px; left: 45px; }
+.skeleton-leg-right { width: 8px; height: 60px; top: 110px; left: 67px; }
+
+@keyframes flex { 0% { transform: translateY(0); } 50% { transform: translateY(20px); } 100% { transform: translateY(0); } }
+.flexing .skeleton-body { animation: flex 1.5s ease-in-out infinite; }
+
+footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #2a2a2a; color: #666; font-size: 0.9rem; }
+
+/* Overlay keypoint styles (canvas drawing will override but keep as fallback) */

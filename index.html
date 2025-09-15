@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FlexDetector • Contador de Flexões</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <header>
+        <h1>FlexDetector</h1>
+        <p class="subtitle">Contador inteligente de flexões com feedback visual</p>
+      </header>
+
+      <main>
+        <div class="card">
+          <h2 class="card-title">Detector de Flexões</h2>
+
+          <div class="camera-section">
+            <div class="camera-container">
+              <video id="video" autoplay playsinline muted></video>
+              <canvas id="overlay"></canvas>
+              <div id="countdown-overlay" class="countdown-overlay" aria-hidden="true"></div>
+            </div>
+
+            <div class="stats-panel">
+              <div class="count-display">
+                <div class="count-label">FLEXÕES</div>
+                <div class="count-value" id="live-counter">0</div>
+                <div class="count-label">contagem atual</div>
+              </div>
+
+              <div class="status-indicators">
+                <div class="indicator">
+                  <div class="indicator-value" id="status-camera">❌</div>
+                  <div class="indicator-label">Câmera</div>
+                </div>
+                <div class="indicator">
+                  <div class="indicator-value" id="status-detection">❌</div>
+                  <div class="indicator-label">Detecção</div>
+                </div>
+                <div class="indicator">
+                  <div class="indicator-value" id="status-posture">-</div>
+                  <div class="indicator-label">Postura</div>
+                </div>
+              </div>
+
+              <div class="controls">
+                <button id="start-camera" class="btn btn-primary">Abrir Câmera</button>
+                <button id="stop-camera" class="btn btn-secondary">Fechar Câmera</button>
+                <button id="start-detect" class="btn btn-primary">Iniciar Detecção</button>
+                <button id="reset-count" class="btn btn-secondary">Zerar Contagem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback">
+            <div class="feedback-title">Feedback do Sistema</div>
+            <div class="feedback-text" id="feedback-text">
+              Para começar, abra a câmera e inicie a detecção.
+            </div>
+          </div>
+
+          <div class="skeleton-viz" aria-hidden="true">
+            <div class="skeleton">
+              <div class="skeleton-part skeleton-head"></div>
+              <div class="skeleton-part skeleton-body"></div>
+              <div class="skeleton-part skeleton-arm-left"></div>
+              <div class="skeleton-part skeleton-arm-right"></div>
+              <div class="skeleton-part skeleton-leg-left"></div>
+              <div class="skeleton-part skeleton-leg-right"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        FlexDetector • Sistema de detecção de exercícios • 2023
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.3/dist/pose-detection.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
